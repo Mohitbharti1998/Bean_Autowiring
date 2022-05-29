@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xsi:schemaLocation="
+        http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
+
+    <!-- bean definitions here -->
+<!--    <bean id="triangle" class="org.spring.Triangle" autowire="byName"/>-->
+
+<!--    <bean id="triangle" class="org.spring.Triangle" autowire="constructor"/>-->
+
+<!--    inhertiance in beans-->
+<!--    <bean id="parent_triangle" class="org.spring.Triangle">-->
+<!--        <property name="pointA" ref="pointA"/>-->
+
+<!--        <property name="points">-->
+<!--            <list>-->
+<!--                <ref bean="pointA"/>-->
+<!--            </list>-->
+<!--        </property>-->
+<!--    </bean>-->
+
+<!--    <bean id="triangle1" class="org.spring.Triangle" parent="parent_triangle">-->
+<!--        <property name="pointB" ref="pointB"/>-->
+<!--        <property name="pointC" ref="pointC"/>-->
+<!--        <property name="points">-->
+<!--            <list merge="true">-->
+<!--                <ref bean="pointB"/>-->
+<!--            </list>-->
+<!--        </property>-->
+<!--    </bean>-->
+
+
+    <bean id="triangle1" class="org.spring.Triangle" autowire="byName" init-method="myInit" destroy-method="cleanUp"/>
+
+    <bean id="pointA" class="org.spring.Point">
+        <property name="x" value="${pointA.pointX}"/>
+        <property name="y" value="${pointA.pointY}"/>
+    </bean>
+
+    <bean id="pointB" class="org.spring.Point">
+        <property name="x" value="-20"/>
+        <property name="y" value="30"/>
+    </bean>
+
+    <bean id="pointC" class="org.spring.Point">
+        <property name="x" value="20"/>
+        <property name="y" value="0"/>
+    </bean>
+
+<!--    <bean class="org.spring.DisplayNameBeanPostProcessor"/>-->
+
+    <bean class="org.springframework.beans.factory.config.PropertyPlaceholderConfigurer">
+        <property name="locations" value="pointsconfig.properties"/>
+    </bean>
+
+
+
+</beans>
